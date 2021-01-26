@@ -9,6 +9,7 @@
     	<style>    
     		div{font-family: 'Arial'; color: #181818}
     		img{cursor: pointer;}
+    		.txtList1{font-size: 13px; color: #000; cursor: pointer; margin-left: -10px; padding-left: 10px; display: flex; align-items: center;}
     		.txtList{font-size: 13px; color: #000; cursor: pointer; height: 25px; margin-left: -10px; padding-left: 10px; display: flex; align-items: center;}
     		.imgList{font-size: 13px; color: #000; margin-bottom: 5px; border: solid 2px #999; justify-content: center; height: 20px; display: flex; align-items: center; border-radius: 3px; cursor: pointer;}
     		.imgimgList{cursor: pointer; width: 200px; height: 120px; display: flex; align-items: center; justify-content: center; border: solid 2px #999; border-radius: 3px; margin-bottom: 2px}
@@ -137,37 +138,25 @@
 		
 		function searchFunc(){
 			
-			var selTitle = "";
-			
+			var selTitle = [];
+					
+
 			if(document.getElementById("s_1").checked == true){
-				for(var i = 1; i < 13; i++){
+				for(var i = 0; i < titleInfo.length; i++){
 					var str = titleInfo[i];
 					//alert(str);
 					var n = str.split(document.getElementById("searchTxt").value);					
-					if(n.length > 1) selTitle += i + ",";
+					if(n.length > 1) selTitle.push(i);
 				}
 			}
-
-			if(document.getElementById("s_2").checked == true || document.getElementById("s_3").checked == true){
-				for(var i = 1; i < 13; i++){
-					var str = textInfo[i];
-					var n = str.split(document.getElementById("searchTxt").value);
-
-					if(n.length > 1) selTitle += i + ",";
-				}
-			}
-			selTitle = selTitle.split(",");
-			selTitle.sort((a,b)=>a-b);
-
+			
 			var b = "";
 			var searchTitleData = "";
-			for(var i = 1; i < selTitle.length; i++){
-				if(b != selTitle[i]){
-					var txt = '<div onclick="selPage('+selTitle[i]+')" class="txtList" id="sList'+selTitle[i]+'">'+titleInfo[selTitle[i]]+'</div>';
-					searchTitleData += txt;
-				}
-
-				b = selTitle[i];
+			for(var i = 0; i < selTitle.length; i++){
+				
+				var txt = '<div onclick="selPage('+selTitle[i]+')" class="txtList1"  id="sList'+selTitle[i]+'">'+titleInfo[selTitle[i]]+'</div>';
+				searchTitleData += txt;
+							
 			}
 			document.getElementById("searchTitle").innerHTML = searchTitleData;
 		}
