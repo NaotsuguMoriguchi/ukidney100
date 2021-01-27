@@ -226,8 +226,10 @@
 
 		}
 
+		
 		function timeChange(){
 			g_sec = (document.getElementById("timeLine").value) * 1;
+			document.getElementById("video").currentTime = g_sec;
 			timeConfig();
 			cardSelect();
 		}
